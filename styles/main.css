@@ -1,0 +1,565 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+
+
+
+/* HTML5 display-role reset for older browsers */
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+
+
+
+
+/*#background {
+
+	background-image: url("../assets/soccerBackground.jpg");
+
+}*/
+
+html {
+
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    background: url("../assets/soccerBackground.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+@font-face {
+    font-family: agbqbold;
+    src: url(../assets/fonts/AkzidenzGrotesk-Bold.otf);
+}
+
+@font-face {
+    font-family: agbqmedium;
+    src: url(../assets/fonts/AkzidenzGrotesk-Medium.otf);
+}
+@font-face {
+    font-family: agbqlight;
+    src: url(../assets/fonts/AkzidenzGrotesk-Light.otf);
+}
+@font-face {
+    font-family: agbqregular;
+    src: url(../assets/fonts/AkzidenzGrotesk-Regular.otf);
+}
+
+#logo {
+    height: 70px;
+    width: 85px;
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h2 {
+    background-color: transparent;
+    color: white;
+    font-family: 'agbqmedium';
+    font-size: 3.5vh;
+    position: relative;
+    text-align: center;
+}
+
+#title {
+
+    position: absolute;
+    display: inline-block;
+    top: 110px;
+    width: 100%;
+    left: 0;
+    right: 0;
+
+    vertical-align: middle;
+}
+
+#yourNextGameTitle {
+    width: 100%;
+    position: relative;
+    top: 10px;
+}
+
+#tableTeams {
+
+    width: 260px;
+    height: auto;
+    position: relative;
+    display: table;
+    top: 160px;
+    table-layout: fixed;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+
+.logoTeam {
+    max-width: 100px;
+    height: auto;
+    max-height: 100px;
+}
+
+
+
+
+
+.teamNames {
+    color: white;
+    font-family: helvetica;
+    text-align: center;
+}
+
+#tableTeams td {
+
+    padding: 20px;
+}
+
+#navBar {
+    width: 100%;
+    height: 50px;
+    background-color: #F5F5F5;
+}
+
+#menuIcon {
+    height: 20px;
+    width: auto;
+    position: absolute;
+    top: 13px;
+    left: 10px;
+}
+
+#logoFicti {
+    float: right;
+    margin-top: 4px;
+}
+
+#opacityScreen {
+    width: 100%;
+
+    background-color: rgba(0, 0, 0, .6);
+}
+
+#u1Home {
+    display: inline-block;
+    float: left;
+    vertical-align: baseline;
+}
+
+#u4Home {
+    display: inline-block;
+    float: right;
+    vertical-align: baseline;
+}
+
+h5 {
+    position: relative;
+  	display: inline-block;
+    color: white;
+    font-family: 'Ramabhadra';
+    top: 65px;
+    left:3px;
+}
+
+#todayMatch {
+
+
+    width: 230px;
+    padding-top: 30px;
+    margin-right: auto;
+    margin-left: auto;
+    left: 0;
+    right: 0;
+}
+
+#gameInfo {
+
+    width: 100%;
+    font-family: 'agbqmedium';
+    color: white;
+    display: block;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    clear: both;
+}
+
+#gameInfo a {
+    color: white;
+}
+
+#u4Home h3 {
+    position: relative;
+    top: -12px;
+}
+
+.buttonGreen {
+    display: block;
+    text-align: center;
+    background-color: #7ED321;
+    color: white;
+    font-family: 'agbqmedium';
+    width: 70%;
+    max-width: 600px;
+    height: 60px;
+    margin-bottom: 10px;
+    vertical-align: bottom;
+    margin-right: auto;
+    margin-left: auto;
+    left: 0;
+    right: 0;
+    font-size: 20px;
+    padding-top: 20px;
+}
+
+#buttonGreenTop {
+    margin-top: 20px;
+}
+
+#buttonGreenBottom {
+    margin-bottom: 20px;
+}
+
+.dropdown {
+    position: absolute;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: relative;
+    background-color: #7ED321;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    top: 50px;
+    font-family: 'agbqbold';
+    z-index: 2;
+}
+
+.dropdown-content a {
+
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+
+}
+
+.dropdown-content a:last-child {
+
+    padding-bottom: 20px;
+}
+
+.dropbtn {
+    position: absolute;
+    background-image: url(../assets/menuIcon.png);
+    background-repeat: no-repeat;
+    height: 30px;
+    width: 50px;
+    top: 10px;
+    left: 5px;
+}
+
+.show {
+    display: block;
+}
+
+#backOpacity {
+	display: none;
+	position: absolute;
+	top:60px;
+	width: 100%;
+	height:200%;
+	background-color: rgba(0, 0, 0, .6);
+	z-index: 1;
+}
+
+#backButton {
+	
+	position: absolute;
+	top:11px;
+	left:6px;
+
+}
+
+#backButton img {
+	height: 22px;
+
+}
+
+#gScheduleTitle h2{
+	margin-top: 15px;
+
+}
+
+#scheduleTable {
+	background-color: rgba(0, 0, 0, .6);
+	width: 100%;
+	height: 200%;
+	margin-top: 17px;
+}
+
+#months {
+	
+	padding-top: 5px;
+	text-align: center;
+}
+
+.carousel-indicators{
+	position: initial;
+	width: auto;
+	margin-left: auto;
+}
+
+.carousel-indicators .active{
+	background-color: transparent;
+	padding: 0 10px;
+	color: white;
+	font-family: "agbqbold";
+	opacity: 1;
+	text-decoration: none;
+}
+
+/*.activeMonth {
+	padding: 0 10px;
+	color: white;
+	font-family: "agbqbold";
+
+
+}*/
+
+.nonActiveMonth {
+	padding: 0 10px;
+	color: white;
+	font-family: "agbqbold";
+	opacity: 0.4;
+}
+
+#noNovember {
+	padding-top: 45px;
+	text-align: center;
+	font-family: "agbqregular";
+	color: white;
+	font-size: 20px;
+}
+
+#mainLine {
+	background-color: white;
+	height: 1px;
+	margin-top: 5px;
+}
+
+h1 {
+	font-family: "agbqmedium";
+	color: white;
+}
+
+
+
+
+
+
+.right {
+	display:block;
+	text-align: right;
+
+}
+
+.singleDay h3 {
+	font-family: "agbqmedium";
+	color: white;
+	font-size: 32pt;
+
+}
+
+#scheduleContent > li {
+	position: relative;
+	padding: 10px;
+
+}
+
+.meta {
+	margin-top: 10px;
+	color: white;
+	line-height: 25px;
+	clear: both;
+	
+}
+
+.meta span{
+	vertical-align: baseline;
+}
+
+.time {
+	font-family: "agbqlight";
+	font-size: 16pt;
+	float: left;
+}
+
+.location {
+	font-family: "agbqregular";
+	font-size: 20pt;
+}
+
+.divisoryLine {
+	background-color: white;
+	opacity: 0.4;
+	height: 1px;
+	margin: 10px 10px 10px auto;
+	width: 66%;
+	clear: both;
+}
+
+.endDivisoryLine {
+	background-color: white;
+	height: 2px;
+	opacity: 0.4;
+	width: 100%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	clear: both;
+}
+
+.date{
+	float: left;
+}
+
+.singleDay a {
+	text-decoration: none;
+	color: white;
+}

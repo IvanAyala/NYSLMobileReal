@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NYSL to Go!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css" />
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/4.2.0/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/4.2.0/firebase-auth.js"></script>
+    <script defer src="/__/firebase/4.2.0/firebase-database.js"></script>
+    <script defer src="/__/firebase/4.2.0/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/4.2.0/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles/main.css">
+    <!-- CONFIGURATION -->
+    <!-- Allow web app to be run in full-screen mode. -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- Make the app title different than the page title. -->
+    <meta name="apple-mobile-web-app-title" content="NYSL Go!">
+    <!-- Configure the status bar. -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Set the viewport. -->
+    <meta name="viewport" content="initial-scale=1">
+    <!-- Disable automatic phone number detection. -->
+    <meta name="format-detection" content="telephone=no">
+    <!-- ICONS -->
+    <!-- iPad retina icon -->
+    <link href="https://placehold.it/152" sizes="152x152" rel="apple-touch-icon-precomposed">
+    <!-- iPad retina icon (iOS < 7) -->
+    <link href="https://placehold.it/144" sizes="144x144" rel="apple-touch-icon-precomposed">
+    <!-- iPad non-retina icon -->
+    <link href="https://placehold.it/76" sizes="76x76" rel="apple-touch-icon-precomposed">
+    <!-- iPad non-retina icon (iOS < 7) -->
+    <link href="https://placehold.it/72" sizes="72x72" rel="apple-touch-icon-precomposed">
+    <!-- iPhone 6 Plus icon -->
+    <link href="../assets/iconIphon6Plus.png" sizes="120x120" rel="apple-touch-icon-precomposed">
+    <!-- iPhone retina icon (iOS < 7) -->
+    <link href="https://placehold.it/114" sizes="114x114" rel="apple-touch-icon-precomposed">
+    <!-- iPhone non-retina icon (iOS < 7) -->
+    <link href="https://placehold.it/57" sizes="57x57" rel="apple-touch-icon-precomposed">
+    <!-- STARTUP IMAGES -->
+    <!-- iPad retina portrait startup image -->
+    <link href="https://placehold.it/1536x2008" media="(device-width: 768px) and (device-height: 1024px)
+                 and (-webkit-device-pixel-ratio: 2)
+                 and (orientation: portrait)" rel="apple-touch-startup-image">
+    <!-- iPad retina landscape startup image -->
+    <link href="https://placehold.it/1496x2048" media="(device-width: 768px) and (device-height: 1024px)
+                 and (-webkit-device-pixel-ratio: 2)
+                 and (orientation: landscape)" rel="apple-touch-startup-image">
+    <!-- iPad non-retina portrait startup image -->
+    <link href="https://placehold.it/768x1004" media="(device-width: 768px) and (device-height: 1024px)
+                 and (-webkit-device-pixel-ratio: 1)
+                 and (orientation: portrait)" rel="apple-touch-startup-image">
+    <!-- iPad non-retina landscape startup image -->
+    <link href="https://placehold.it/748x1024" media="(device-width: 768px) and (device-height: 1024px)
+                 and (-webkit-device-pixel-ratio: 1)
+                 and (orientation: landscape)" rel="apple-touch-startup-image">
+    <!-- iPhone 6 Plus portrait startup image -->
+    <link href="../assets/splashIphone7.png" media="(device-width: 414px) and (device-height: 736px)
+                 and (-webkit-device-pixel-ratio: 3)
+                 and (orientation: portrait)" rel="apple-touch-startup-image">
+    <!-- iPhone 6 Plus landscape startup image -->
+    <link href="https://placehold.it/1182x2208" media="(device-width: 414px) and (device-height: 736px)
+                 and (-webkit-device-pixel-ratio: 3)
+                 and (orientation: landscape)" rel="apple-touch-startup-image">
+    <!-- iPhone 6 startup image -->
+    <link href="https://placehold.it/750x1294" media="(device-width: 375px) and (device-height: 667px)
+                 and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+    <!-- iPhone 5 startup image -->
+    <link href="https://placehold.it/640x1096" media="(device-width: 320px) and (device-height: 568px)
+                 and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+    <!-- iPhone < 5 retina startup image -->
+    <link href="https://placehold.it/640x920" media="(device-width: 320px) and (device-height: 480px)
+                 and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+    <!-- iPhone < 5 non-retina startup image -->
+    <link href="https://placehold.it/320x460" media="(device-width: 320px) and (device-height: 480px)
+                 and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image">
+</head>
+
+<body>
+    <a href="home.html" id="backButton"><img src="assets/mainback.png"></a>
+    <img src="assets/logoFicti.png" id="logoFicti">
+    <div id="navBar"></div>
+    <div id="gScheduleTitle">
+        <h2>Game's Schedule</h2></div>
+    <div id="scheduleTable">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
+            <!-- Indicators -->
+            <!-- <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol> -->
+            <div class="container">
+                <div class="row carousel-indicators" id="months">
+                    <a href="#" data-target="#myCarousel" data-slide-to="0" class="nonActiveMonth col active">September</a>
+                    <a href="#" data-target="#myCarousel" data-slide-to="1" class="nonActiveMonth col">October</a>
+                    <a href="#" data-target="#myCarousel" data-slide-to="2" class="nonActiveMonth col">November</a>
+                </div>
+            </div>
+            <div id="mainLine"></div>
+            <div class="container">
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <!-- September -->
+                        <ul id="scheduleContent">
+                            <li>
+                                <ul class="singleDay">
+                                    <li>
+                                        <h3>
+                        <span class='date'>01</span>
+                        <span class="right">U1 vs U4</span></h3>
+                                        <p class="meta">
+                                            <span class="time">9:30 am</span>
+                                            <span class="right location"><a href="https://www.google.de/maps/place/A+J+Katzenmaier+Elementary+School/@42.3258685,-87.8649288,17z/data=!3m1!4b1!4m5!3m4!1s0x880f932fbc6ba7cd:0xcf2bbe275c6da815!8m2!3d42.3258685!4d-87.8627401">AJ Katzenmaier</a></span>
+                                        </p>
+                                    </li>
+                                </ul>
+                            </li>
+                            <div class="divisoryLine"></div>
+                            <li>
+                                <ul class="singleDay">
+                                    <li>
+                                        <h3> <span class="right">U3 vs U2</span></h3>
+                                        <p class="meta">
+                                            <span class="time">1:00 pm</span>
+                                            <span class="right location">GreenBay</span>
+                                        </p>
+                                    </li>
+                                </ul>
+                            </li>
+                            <div class="endDivisoryLine"></div>
+                        </ul>
+                        <ul id="scheduleContent">
+                            <li>
+                                <ul class="singleDay">
+                                    <li>
+                                        <h3>
+                        <span class='date'>08</span>
+                        <span class="right">U5 vs U6</span></h3>
+                                        <p class="meta">
+                                            <span class="time">9:30 am</span>
+                                            <span class="right location">Howard A Yeager</span>
+                                        </p>
+                                    </li>
+                                </ul>
+                            </li>
+                            <div class="divisoryLine"></div>
+                            <li>
+                                <ul class="singleDay">
+                                    <li>
+                                        <h3> <span class="right">U6 vs U1</span></h3>
+                                        <p class="meta">
+                                            <span class="time">1:00 pm</span>
+                                            <span class="right location">Marjorie P Hart</span>
+                                        </p>
+                                    </li>
+                                </ul>
+                            </li>
+                            <div class="endDivisoryLine"></div>
+                        </ul>
+                        <ul id="scheduleContent">
+                            <li>
+                                <ul class="singleDay">
+                                    <li>
+                                        <h3>
+                        <span class='date'>15</span>
+                        <span class="right">U2 vs U4</span></h3>
+                                        <p class="meta">
+                                            <span class="time">9:30 am</span>
+                                            <span class="right location">North</span>
+                                        </p>
+                                    </li>
+                                </ul>
+                            </li>
+                            <div class="divisoryLine"></div>
+                            <li>
+                                <ul class="singleDay">
+                                    <li>
+                                        <h3> <span class="right">U3 vs U5</span></h3>
+                                        <p class="meta">
+                                            <span class="time">1:00 pm</span>
+                                            <span class="right location">AJ Katzenmaier</span>
+                                        </p>
+                                    </li>
+                                </ul>
+                            </li>
+                            <div class="endDivisoryLine"></div>
+                        </ul>
+                        <ul id="scheduleContent">
+                            <li>
+                                <ul class="singleDay">
+                                    <li>
+                                        <h3>
+                        <span class='date'>22</span>
+                        <span class="right">U1 vs U3</span></h3>
+                                        <p class="meta">
+                                            <span class="time">9:30 am</span>
+                                            <span class="right location">South</span>
+                                        </p>
+                                    </li>
+                                </ul>
+                            </li>
+                            <div class="divisoryLine"></div>
+                            <li>
+                                <ul class="singleDay">
+                                    <li>
+                                        <h3> <span class="right">U2 vs U6</span></h3>
+                                        <p class="meta">
+                                            <span class="time">1:00 pm</span>
+                                            <span class="right location">Howard A Yeager</span>
+                                        </p>
+                                    </li>
+                                </ul>
+                            </li>
+                            <div class="endDivisoryLine"></div>
+                        </ul>
+                        <ul id="scheduleContent">
+                            <li>
+                                <ul class="singleDay">
+                                    <li>
+                                        <h3>
+                        <span class='date'>29</span>
+                        <span class="right">U4 vs U5</span></h3>
+                                        <p class="meta">
+                                            <span class="time">9:30 am</span>
+                                            <span class="right location">Greenbay</span>
+                                        </p>
+                                    </li>
+                                </ul>
+                            </li>
+                            <div class="endDivisoryLine"></div>
+                        </ul>
+                    </div>
+                    <div class="item">
+                        <!-- October -->
+                        <ul id="scheduleContent">
+                            <li>
+                                <ul class="singleDay">
+                                    <li>
+                                        <h3>
+                        <span class='date'>06</span>
+                        <span class="right">U2 vs U5</span></h3>
+                                        <p class="meta">
+                                            <span class="time">9:30 am</span>
+                                            <span class="right location">Marjorie P Hart</span>
+                                        </p>
+                                    </li>
+                                </ul>
+                            </li>
+                            <div class="divisoryLine"></div>
+                            <li>
+                                <ul class="singleDay">
+                                    <li>
+                                        <h3> <span class="right">U1 vs U6</span></h3>
+                                        <p class="meta">
+                                            <span class="time">1:00 pm</span>
+                                            <span class="right location">South</span>
+                                        </p>
+                                    </li>
+                                </ul>
+                            </li>
+                            <div class="endDivisoryLine"></div>
+                        </ul>
+                        <ul id="scheduleContent">
+                            <li>
+                                <ul class="singleDay">
+                                    <li>
+                                        <h3>
+                        <span class='date'>13</span>
+                        <span class="right">U3 vs U4</span></h3>
+                                        <p class="meta">
+                                            <span class="time">9:30 am</span>
+                                            <span class="right location">Howard A Yeager</span>
+                                        </p>
+                                    </li>
+                                </ul>
+                            </li>
+                            <div class="divisoryLine"></div>
+                            <li>
+                                <ul class="singleDay">
+                                    <li>
+                                        <h3> <span class="right">U5 vs U1</span></h3>
+                                        <p class="meta">
+                                            <span class="time">1:00 pm</span>
+                                            <span class="right location">Greenbay</span>
+                                        </p>
+                                    </li>
+                                </ul>
+                            </li>
+                            <div class="endDivisoryLine"></div>
+                        </ul>
+                        <ul id="scheduleContent">
+                            <li>
+                                <ul class="singleDay">
+                                    <li>
+                                        <h3>
+                        <span class='date'>20</span>
+                        <span class="right">U6 vs U3</span></h3>
+                                        <p class="meta">
+                                            <span class="time">9:30 am</span>
+                                            <span class="right location">North</span>
+                                        </p>
+                                    </li>
+                                </ul>
+                            </li>
+                            <div class="divisoryLine"></div>
+                            <li>
+                                <ul class="singleDay">
+                                    <li>
+                                        <h3> <span class="right">U2 vs U4</span></h3>
+                                        <p class="meta">
+                                            <span class="time">1:00 pm</span>
+                                            <span class="right location">Marjorie P Hart</span>
+                                        </p>
+                                    </li>
+                                </ul>
+                            </li>
+                            <div class="endDivisoryLine"></div>
+                        </ul>
+                        <ul id="scheduleContent">
+                            <li>
+                                <ul class="singleDay">
+                                    <li>
+                                        <h3>
+                        <span class='date'>27</span>
+                        <span class="right">U3 vs U1</span></h3>
+                                        <p class="meta">
+                                            <span class="time">9:30 am</span>
+                                            <span class="right location">AJ Katyenmaier</span>
+                                        </p>
+                                    </li>
+                                </ul>
+                            </li>
+                            <div class="divisoryLine"></div>
+                            <li>
+                                <ul class="singleDay">
+                                    <li>
+                                        <h3> <span class="right">U5 vs U6</span></h3>
+                                        <p class="meta">
+                                            <span class="time">1:00 pm</span>
+                                            <span class="right location">Howard A Yeager</span>
+                                        </p>
+                                    </li>
+                                </ul>
+                            </li>
+                            <div class="endDivisoryLine"></div>
+                        </ul>
+                    </div>
+                    <div class="item">
+                        <div id="noNovember">
+                            <span>No matches scheduled for November! <br> :( </span> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+
+        try {
+            let app = firebase.app();
+            let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
+
+        } catch (e) {
+            console.error(e);
+
+        }
+    });
+    </script>
+    <script src="scripts/main.js"></script>
+</body>
+
+</html>
